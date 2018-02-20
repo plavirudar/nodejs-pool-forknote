@@ -24,5 +24,13 @@
     "name": "Aeon Coin",
     "mixIn": 4,
     "shortCode": "AEON"
+  },
+  "xlc": {
+    "funcFile": "./lib/coins/xlc.js",
+    "paymentFile": "./payment_systems/xlc.js",
+    "sigDigits": 100000000,
+    "name": "LeviarCoin",
+    "mixIn": 1,
+    "shortCode": "XLC"
   }
 }
