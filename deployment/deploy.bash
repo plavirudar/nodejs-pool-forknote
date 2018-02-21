@@ -14,7 +14,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $ROOT_SQL_PASS"
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $ROOT_SQL_PASS"
 echo -e "[client]\nuser=root\npassword=$ROOT_SQL_PASS" | sudo tee /root/.my.cnf
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y install git python-virtualenv python3-virtualenv curl ntp build-essential screen cmake pkg-config libboost-all-dev libevent-dev libunbound-dev libminiupnpc-dev libunwind8-dev liblzma-dev libldns-dev libexpat1-dev libgtest-dev mysql-server lmdb-utils libzmq3-dev
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install git python-virtualenv python3-virtualenv curl ntp build-essential screen cmake pkg-config libboost-all-dev libssl-dev libevent-dev libunbound-dev libminiupnpc-dev libunwind8-dev liblzma-dev libldns-dev libexpat1-dev libgtest-dev mysql-server lmdb-utils libzmq3-dev
 cd ~
 git clone https://github.com/Bathmat/nodejs-pool-forknote.git nodejs-pool # Change this depending on how the deployment goes.
 cd /usr/src/gtest
@@ -23,12 +23,15 @@ sudo make
 sudo mv libg* /usr/lib/
 cd ~
 sudo systemctl enable ntp
-#cd /usr/local/src
-#sudo git clone https://github.com/monero-project/monero.git
-#cd monero
+cd /usr/local/src
+sudo git clone https://github.com/forknote/forknote.git
+cd forknote
 #sudo git checkout v0.11.1.0
 #curl https://raw.githubusercontent.com/Snipa22/nodejs-pool/master/deployment/monero_daemon.patch | sudo git apply -v
-#sudo make -j$(nproc)
+sudo cmake .
+sudo make -j$(nproc)
+cd scr
+sudo git clone https://github.com/forknote/configs.git
 #sudo cp ~/nodejs-pool/deployment/monero.service /lib/systemd/system/
 #sudo useradd -m monerodaemon -d /home/monerodaemon
 #BLOCKCHAIN_DOWNLOAD_DIR=$(sudo -u monerodaemon mktemp -d)
