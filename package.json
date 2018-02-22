@@ -42,7 +42,7 @@
     "zmq": "^2.15.3"
   },
   "optionalDependencies": {
-    "forknote-util": "git://github.com/Bathmat/node-forknote-util.git",
+    "cryptonote-util": "git://github.com/Bathmat/node-forknote-util.git",
     "multi-hashing": "git+https://github.com/Snipa22/node-multi-hashing-aesni.git"
   }
 }
