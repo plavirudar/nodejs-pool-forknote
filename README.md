@@ -49,7 +49,7 @@ Deployment via Installer
 ------------------------
 
 1. Add your user to `/etc/sudoers`, this must be done so the script can sudo up and do it's job.  We suggest passwordless sudo.  Suggested line: `<USER> ALL=(ALL) NOPASSWD:ALL`.  Our sample builds use: `pooldaemon ALL=(ALL) NOPASSWD:ALL`
-2. Run the [deploy script](https://raw.githubusercontent.com/Bathmat/nodejs-pool-forknote/master/deployment/deploy.bash) as a **NON-ROOT USER**.  This is very important!  This script will install the pool to whatever user it's running under!  Also.  Go get a coffee, this sucker bootstraps the monero installation.
+2. Run the [deploy script](https://raw.githubusercontent.com/Bathmat/nodejs-pool-forknote/master/deployment/deploy.bash) as a **NON-ROOT USER**.  This is very important!  This script will install the pool to whatever user it's running under!  Also.  Go get a coffee, this sucker bootstraps the Forknote installation.
 3. Once it's complete, change as `config.json` appropriate.  It is pre-loaded for a local install of everything, running on 127.0.0.1.  This will work perfectly fine if you're using a single node setup.  You'll also want to set `bind_ip` to the external IP of the pool server, and `hostname` to the resolvable hostname for the pool server. `pool_id` is mostly used for multi-server installations to provide unique identifiers in the backend. You will also want to run: `source ~/.bashrc`  This will activate NVM and get things working for the following pm2 steps.
 4. You'll need to change the API endpoint for the frontend code in the `poolui/build/globals.js` and `poolui/build/globals.default.js` -- This will usually be `http(s)://<your server FQDN>/api` unless you tweak caddy!
 5. The default database directory `/home/<username>/pool_db/` is already been created during startup. If you change the `db_storage_path` just make sure your user has write permissions for new path. Run: `pm2 restart api` to reload the API for usage.  
@@ -87,7 +87,7 @@ The following raw binaries **MUST BE AVAILABLE FOR IT TO BOOTSTRAP**:
 
 I've confirmed that the default server 16.04 installation has these requirements.
 
-The pool comes pre-configured with values for Monero (XMR), these may need to be changed depending on the exact requirements of your coin.  Other coins will likely be added down the road, and most likely will have configuration.sqls provided to overwrite the base configurations for their needs, but can be configured within the frontend as well.
+The pool comes pre-configured with generic Forknote values. Make sure you update SQL for your specific coin.
 
 The pool ALSO applies a series of patches:  Fluffy Blocks, Additional Open P2P Connections, 128 Txn Bug Fix.  If you don't like these, replace the auto-installed monerod fixes!
 
@@ -95,12 +95,12 @@ Wallet Setup
 ------------
 The pool is designed to have a dual-wallet design, one which is a fee wallet, one which is the live pool wallet.  The fee wallet is the default target for all fees owed to the pool owner.  PM2 can also manage your wallet daemon, and that is the suggested run state.
 
-1. Generate your wallets using `/usr/local/src/monero/build/release/bin/monero-wallet-cli`
+**Untested with Forknote. Recommend using a screen for simplwallet**
+
+1. Generate your wallets using `/usr/local/src/forknote/src/simplewallet`
 2. Make sure to save your regeneration stuff!
-3. For the pool wallet, store the password in a file, the suggestion is `~/wallet_pass`
-4. Change the mode of the file with chmod to 0400: `chmod 0400 ~/wallet_pass`
-5. Start the wallet using PM2: `pm2 start /usr/local/src/monero/build/release/bin/monero-wallet-rpc -- --rpc-bind-port 18082 --password-file ~/wallet_pass --wallet-file <Your wallet name here> --disable-rpc-login --trusted-daemon`
-6. If you don't use PM2, then throw the wallet into a screen and have fun.
+3. Start the wallet using PM2: `pm2 start /usr/local/src/forknote/src/simplewallet -- --rpc-bind-port 8070 --wallet-file <Your wallet name here> --password <Your password>`
+4. If you don't use PM2, then throw the wallet into a screen and have fun.
 
 Manual Setup
 ------------
@@ -238,18 +238,13 @@ The developers of the pool have not verified this, but based on our own usage on
 
 Installation/Configuration Assistance
 =====================================
-If you need help installing the pool from scratch, please have your servers ready, which would be Ubuntu 16.04 servers, blank and clean, DNS records pointed.  These need to be x86_64 boxes with AES-NI Available.
+Contact Bathmat if you have questions about installation/configuration.
 
-Installation assistance is 7 XMR, with a 3 XMR deposit, with remainder to be paid on completion.  
-Configuration assistance is 4 XMR with a 2 XMR deposit, and includes debugging your pool configurations, ensuring that everything is running, and tuning for your uses/needs.  
-
-SSH access with a sudo-enabled user will be needed, preferably the user that is slated to run the pool.
-
-If you'd like assistance with setting up node-cryptonote-pool, please provide what branch/repo you'd like to work from, as there's a variety of these.
-
-Assistance is not available for frontend customization at this time.
-
-For assistance, please contact Snipa at pool_install@snipanet.com or via IRC at irc.freenode.net in the #monero-pools channel.
+My Pools
+========
+leviar.bathmatminingpools.com
+turtle.bathmatminingpools.com
+coal.bathmatminingpools.com
 
 Developer Donations
 ===================
@@ -257,6 +252,7 @@ If you'd like to make a one time donation, the addresses are as follows:
 * XMR - 45aoLFsZtu9MepSoWhNFN7YmUQeA4NsopN4BBaRjhrN63JrrJvBpM2EBPFAS1JNGPBCx7fdjA2JzPB5Fc129JmD6HNtCbyb
 * BTC - 15d5a1BaE6cw9dSVcTqeUDNq3jeQ3VH8fd
 * XLC - LnNcuQRGbQ2MXd5m9Lyx1LCxoxDVBs1E1PNEc62EubjYdjPmbwkUdanEH1EJNqAUx22tNmauexNVk62TA7sv3C4S7L9g7Vo
+* ETH - 0xEC10ef7bA20F9651D550C3e5705191Bf0fD814F8
 
 Credits
 =======
@@ -267,6 +263,6 @@ Credits
 
 [Wolf0](https://github.com/wolf9466/)/[OhGodAGirl](https://github.com/ohgodagirl) - Rebuild of node-multi-hashing with AES-NI [node-multi-hashing](https://github.com/Snipa22/node-multi-hashing-aesni)
 
-[Snipa22](https://github.com/Snipa22) - For this awesome pool software!
+[Snipa22](https://github.com/Snipa22) - For this awesome pool software! [nodejs-pool](https://github.com/Snipa22/nodejs-pool)
 
-[avtc](https://github.com/avtc) - For updates to cryptonote-utils for Forknote coins.
+[avtc](https://github.com/avtc) - For updates to cryptonote-util for Forknote coins [node-cryptonote-util](https://github.com/avtc/node-cryptonote-util_forknote)

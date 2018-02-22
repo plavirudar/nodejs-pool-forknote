@@ -30,7 +30,7 @@ cd forknote
 #curl https://raw.githubusercontent.com/Snipa22/nodejs-pool/master/deployment/monero_daemon.patch | sudo git apply -v
 sudo cmake .
 sudo make -j$(nproc)
-cd scr
+cd src
 sudo git clone https://github.com/forknote/configs.git
 #sudo cp ~/nodejs-pool/deployment/monero.service /lib/systemd/system/
 #sudo useradd -m monerodaemon -d /home/monerodaemon
