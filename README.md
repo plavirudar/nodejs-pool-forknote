@@ -265,4 +265,4 @@ Credits
 
 [Snipa22](https://github.com/Snipa22) - For this awesome pool software! [nodejs-pool](https://github.com/Snipa22/nodejs-pool)
 
-[avtc](https://github.com/avtc) - For updates to cryptonote-util for Forknote coins [node-cryptonote-util](https://github.com/avtc/node-cryptonote-util_forknote)
+[wallet42](https://github.com/wallet42) - For updates to cryptonote-util for Forknote coins [node-cryptonote-util](https://github.com/wallet42/node-cryptonote-util_forknote)
