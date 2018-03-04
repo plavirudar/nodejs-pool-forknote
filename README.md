@@ -256,7 +256,7 @@ If you'd like to make a one time donation, the addresses are as follows:
 * BTC - 15d5a1BaE6cw9dSVcTqeUDNq3jeQ3VH8fd
 * XLC - LnNcuQRGbQ2MXd5m9Lyx1LCxoxDVBs1E1PNEc62EubjYdjPmbwkUdanEH1EJNqAUx22tNmauexNVk62TA7sv3C4S7L9g7Vo
 * ETH - 0xEC10ef7bA20F9651D550C3e5705191Bf0fD814F8
-* TRTL - TRTLuymuYb1Z8kKJrtrVwefQmBD6iFjydGeytcDcPacsLqEvEiENGZLF3PpGGAdj3S6AVhGdtTYoQf8L92333SHW189Hwp8C3gY
+* TRTL - TRTLuxGyKfY8eWa9wTimVzcNxBW255bZbLw37Rm2ZsPmQFZbMyq1DNXD11b898C3yf4WrsitmFkxUXLbVT92n6x3C9oVBEbN4xT
 ```
 
 Credits
