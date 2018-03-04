@@ -242,11 +242,11 @@ Contact Bathmat if you have questions about installation/configuration.
 
 My Pools
 ========
-[LeviarCoin] (https://leviar.bathmatminingpools.com)
+[LeviarCoin](https://leviar.bathmatminingpools.com)
 
-[TurtleCoin] (https://turtle.bathmatminingpools.com)
+[TurtleCoin](https://turtle.bathmatminingpools.com)
 
-[BitCoal] (https://coal.bathmatminingpools.com)
+[BitCoal](https://coal.bathmatminingpools.com)
 
 Developer Donations
 ===================
